@@ -25,4 +25,8 @@
 
 </div>
 
-<%= render 'stocks/list' %>
+<% if !@tracked_stocks.empty? %>
+  <%= render 'stocks/list' %>
+<% else %>
+  <p>You are not tracking any stocks</p>
+<% end %>

@@ -25,4 +25,8 @@
 
 </div>
 
-<%= render 'friends/list' %>
+<% if !@friends.empty? %>
+  <%= render 'friends/list' %>
+<% else %>
+  <p>You are not following anyone</p>
+<% end %>
