@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-10">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Stocks Tracking</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @friends.each do |friend| %>
+          <tr>
+            <th scope="row"><%= friend.full_name %></th>
+            <td><%= friend.email %></th>
+            <td>
+              <% if friend.stocks.any? %>
+                <% friend.stocks.each do |stock| %>
+                  <li><strong><%= stock.ticker %></strong>: <%= stock.name %></li>
+                <% end %>
+              <% else %>
+                Not tracking any stocks.
+              <% end %>
+            </td>
+            <td><%= link_to 'Unfollow', friendship_path(friend), 
+                      method: :delete, data: {confirm: 'Are you sure?'}, 
+                      class: 'btn btn-sm btn-outline-warning' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
